@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  ipfs:
+    image: ipfs/kubo:v0.33.2
+    container_name: ipfs_host
+    restart: unless-stopped
+    ports:
+      - "4001:4001"
+      - "4001:4001/udp"
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:5001:5001"
+    volumes:
+      - ./ipfs-export:/export
+      - ./ipfs-data:/data/ipfs
+
+  cortensor:
+    build: .
+    container_name: cortensor
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
