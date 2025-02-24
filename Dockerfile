@@ -1,3 +1,5 @@
+FROM ipfs/kubo:v0.33.2 AS ipfs
+
 FROM ubuntu:24.04
 
 # Install necessary packages
@@ -7,12 +9,12 @@ RUN apt-get update && apt-get install -y \
     apt-transport-https \
     ca-certificates 
 
+COPY --from=ipfs /usr/local/bin/ipfs /usr/local/bin/ipfs
+
 # Clone the Cortensor installer repository
 RUN git clone https://github.com/cortensor/installer.git /opt/cortensor-installer
 
 WORKDIR /opt/cortensor-installer
-
-RUN ./install-ipfs-linux.sh && ./kubo/install.sh
 
 RUN mkdir /home/deploy && cp -r dist /home/deploy/.cortensor
 
