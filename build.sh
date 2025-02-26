@@ -5,8 +5,6 @@
 start_port=8091
 cortensor_image="cortensor-image"
 
-docker build -t $cortensor_image .
-
 # Prompt for the number of pairs
 read -p "Enter the number of node: " count
 
@@ -59,4 +57,6 @@ EOF
 
 done
 
-echo "docker-compose.yml generated with $count cortensor node, please adjust the env configuration accordingly."
+docker build -t $cortensor_image .
+
+echo -e "\e[32m docker-compose.yml generated with $count cortensor node, please adjust the env configuration accordingly. \e[0m"
