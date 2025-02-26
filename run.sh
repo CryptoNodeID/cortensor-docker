@@ -5,11 +5,11 @@ if [ -n "$RPC_URL" ]; then
 fi
 
 if [ -n "$PUBLIC_KEY" ]; then
-  sed -i "s/^FROM_ADDRESS=.*/FROM_ADDRESS=$PUBLIC_KEY/" .env
+  sed -i "s/^NODE_PUBLIC_KEY=.*/NODE_PUBLIC_KEY=$PUBLIC_KEY/" .env
 fi
 
 if [ -n "$PRIVATE_KEY" ]; then
-  sed -i "s/^PRIVATE_KEY=.*/PRIVATE_KEY=$PRIVATE_KEY/" .env
+  sed -i "s/^NODE_PRIVATE_KEY=.*/NODE_PRIVATE_KEY=$PRIVATE_KEY/" .env
 fi
 
 if [ -n "$LLM_PORT" ]; then
