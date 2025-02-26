@@ -16,4 +16,4 @@ if [ -n "$LLM_PORT" ]; then
   sed -i "s/^LLM_PORT=.*/LLM_PORT=$LLM_PORT/" .env
 fi
 
-./home/deploy/.cortensor/cortensord .env minerv2 1 docker
+/home/deploy/.cortensor/cortensord .env minerv2 1 docker

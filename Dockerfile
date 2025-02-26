@@ -28,6 +28,8 @@ RUN chmod +x cortensord \
   && cp .env-example .env \
   && cp cortensor.service /etc/systemd/system \
   && touch logs/cortensord.log \
-  && touch logs/cortensord-llm.log
+  && touch logs/cortensord-llm.log \
+  && chmod +x run.sh
 
+USER root
 CMD ["/bin/bash", "-c", "/home/deploy/.cortensor/run.sh"]

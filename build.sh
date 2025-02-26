@@ -12,6 +12,7 @@ fi
 
 # Starting port for the first pair
 start_port=8091
+cortensor_image="cortensor-image"
 
 # Begin the docker-compose.yml file
 cat > docker-compose.yml <<EOF
@@ -27,7 +28,7 @@ for ((i=1; i<=count; i++)); do
   cat >> docker-compose.yml <<EOF
 
   cortensor-$i:
-    build: .
+    image: cortensor-image
     container_name: cortensor-$i
     restart: unless-stopped
     environment:
@@ -44,14 +45,12 @@ for ((i=1; i<=count; i++)); do
     image: cortensor/llm-engine-test-1
     container_name: cts-llm-$i
     restart: always
-    ports:
-      - "$port:$port"
     working_dir: /app
     environment:
       PYTHONUNBUFFERED: "True"
       APP_HOME: /app
       PORT: "$port"
-      HOST: "0.0.0.0"
+      HOST: "host.docker.internal"
     command: "/app/llava-v1.5-7b-q4.llamafile --host \$HOST --port \$PORT --nobrowser --mlock"
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -60,3 +59,5 @@ EOF
 done
 
 echo "docker-compose.yml generated with $count cortensor node, please adjust the env configuration accordingly."
+
+docker build -t $cortensor_image .
