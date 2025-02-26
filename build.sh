@@ -50,7 +50,7 @@ for ((i=1; i<=count; i++)); do
       PYTHONUNBUFFERED: "True"
       APP_HOME: /app
       PORT: "$port"
-      HOST: "host.docker.internal"
+      HOST: "0.0.0.0"
     command: "/app/llava-v1.5-7b-q4.llamafile --host \$HOST --port \$PORT --nobrowser --mlock"
     extra_hosts:
       - "host.docker.internal:host-gateway"
