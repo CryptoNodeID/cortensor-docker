@@ -34,6 +34,7 @@ for ((i=1; i<=count; i++)); do
       RPC_URL: ""
       PUBLIC_KEY: ""
       PRIVATE_KEY: ""
+      LLM_HOST: "llm-$i"
       LLM_PORT: "$port"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

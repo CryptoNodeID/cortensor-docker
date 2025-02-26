@@ -12,6 +12,10 @@ if [ -n "$PRIVATE_KEY" ]; then
   sed -i "s/^NODE_PRIVATE_KEY=.*/NODE_PRIVATE_KEY=$PRIVATE_KEY/" .env
 fi
 
+if [ -n "$LLM_HOST" ]; then
+  sed -i "s/^LLM_HOST=.*/LLM_HOST=$LLM_HOST/" .env
+fi
+
 if [ -n "$LLM_PORT" ]; then
   sed -i "s/^LLM_PORT=.*/LLM_PORT=$LLM_PORT/" .env
 fi
