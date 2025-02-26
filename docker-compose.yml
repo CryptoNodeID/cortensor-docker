@@ -1,9 +1,0 @@
-version: "3.8"
-
-services:
-  cortensor:
-    build: .
-    container_name: cortensor
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock

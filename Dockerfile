@@ -20,6 +20,8 @@ RUN mkdir /home/deploy && cp -r dist /home/deploy/.cortensor
 
 WORKDIR /home/deploy/.cortensor
 
+COPY run.sh /home/deploy/.cortensor/run.sh
+
 RUN chmod +x cortensord \
   && mkdir logs \
   && mkdir llm-files \
@@ -28,4 +30,4 @@ RUN chmod +x cortensord \
   && touch logs/cortensord.log \
   && touch logs/cortensord-llm.log
 
-CMD ["tail", "-f", "/dev/null"]
+CMD ["/bin/bash", "-c", "/home/deploy/.cortensor/run.sh"]

@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  cortensor:
+    build: .
+    container_name: cortensor
+    restart: unless-stopped
+    environment:
+      RPC_URL: ""
+      PUBLIC_KEY: ""
+      PRIVATE_KEY: ""
+      LLM_PORT: ""
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  llm:
+    image: cortensor/llm-engine-test-1
+    container_name: cts-llm-1
+    restart: always
+    ports:
+      - "8091:8091"
+    working_dir: /app
+    environment:
+      PYTHONUNBUFFERED: "True"
+      APP_HOME: /app
+      PORT: "8091"
+      HOST: "0.0.0.0"
+    command: "/app/llava-v1.5-7b-q4.llamafile --host $HOST --port $PORT --nobrowser --mlock"
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
