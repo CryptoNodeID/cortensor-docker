@@ -2,6 +2,8 @@
 # Script: generate-compose.sh
 # Purpose: Generate a docker-compose.yml with multiple cortensor & llm pairs.
 
+docker build -t $cortensor_image .
+
 # Prompt for the number of pairs
 read -p "Enter the number of node: " count
 
@@ -51,7 +53,7 @@ for ((i=1; i<=count; i++)); do
       APP_HOME: /app
       PORT: "$port"
       HOST: "0.0.0.0"
-    command: "/app/llava-v1.5-7b-q4.llamafile --host \$HOST --port \$PORT --nobrowser --mlock"
+    command: ["/app/llava-v1.5-7b-q4.llamafile --host \$\$HOST --port \$\$PORT --nobrowser --mlock"]
     extra_hosts:
       - "host.docker.internal:host-gateway"
 EOF
@@ -59,5 +61,3 @@ EOF
 done
 
 echo "docker-compose.yml generated with $count cortensor node, please adjust the env configuration accordingly."
-
-docker build -t $cortensor_image .
