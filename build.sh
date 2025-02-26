@@ -2,6 +2,9 @@
 # Script: generate-compose.sh
 # Purpose: Generate a docker-compose.yml with multiple cortensor & llm pairs.
 
+start_port=8091
+cortensor_image="cortensor-image"
+
 docker build -t $cortensor_image .
 
 # Prompt for the number of pairs
@@ -11,10 +14,6 @@ read -p "Enter the number of node: " count
 if [ -f docker-compose.yml ]; then
   rm docker-compose.yml
 fi
-
-# Starting port for the first pair
-start_port=8091
-cortensor_image="cortensor-image"
 
 # Begin the docker-compose.yml file
 cat > docker-compose.yml <<EOF
