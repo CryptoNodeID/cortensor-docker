@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -n "$RPC_URL" ]; then
-  sed -i "s/^HOST=.*/HOST=$RPC_URL/" .env
+  sed -i 's|HOST=.*|HOST='$RPC_URL'|g' .env
 fi
 
 if [ -n "$PUBLIC_KEY" ]; then
