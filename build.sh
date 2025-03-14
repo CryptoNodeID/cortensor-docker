@@ -41,7 +41,6 @@ EOF
       port=$((start_port + i - 1))
       
       cat >> docker-compose.yml <<EOF
-
   cortensor-$i:
     image: cortensor-image
     container_name: cortensor-$i
@@ -69,11 +68,12 @@ EOF
       APP_HOME: /app
       PORT: "$port"
       HOST: "0.0.0.0"
-    command: ["/app/llava-v1.5-7b-q4.llamafile --host \$\$HOST --port \$\$PORT --nobrowser --mlock"]
+      CPU_THREADS: "4"
+    command: ["/app/llava-v1.5-7b-q4.llamafile --host \$\$HOST --port \$\$PORT --nobrowser --mlock -t \$\$CPU_THREADS"]
     extra_hosts:
       - "host.docker.internal:host-gateway"
-EOF
 
+EOF
     done
 
     echo -e "\e[32m docker-compose.yml generated with $count cortensor node, please adjust the env configuration accordingly. \e[0m"

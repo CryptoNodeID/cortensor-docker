@@ -1,3 +1,4 @@
 ipfs-data
 ipfs-export
 docker-compose.yml
+config.json
