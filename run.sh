@@ -20,13 +20,5 @@ if [ -n "$LLM_PORT" ]; then
   sed -i "s/^LLM_PORT=.*/LLM_PORT=$LLM_PORT/" .env
 fi
 
-if [ -n "$LLM_OPTION_GPU" ]; then
-  sed -i "s/^LLM_OPTION_GPU=.*/LLM_OPTION_GPU=$LLM_OPTION_GPU/" .env
-fi
-
-if [ -n "$LLM_OPTION_GPU_THRESHOLD" ]; then
-  sed -i "s/^LLM_OPTION_GPU_THRESHOLD=.*/LLM_OPTION_GPU_THRESHOLD=$LLM_OPTION_GPU_THRESHOLD/" .env
-fi
-
 
 /home/deploy/.cortensor/cortensord .env minerv2 1 docker

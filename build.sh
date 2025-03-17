@@ -49,8 +49,6 @@ EOF
       RPC_URL: ""
       PUBLIC_KEY: ""
       PRIVATE_KEY: ""
-      LLM_OPTION_GPU: "0"
-      LLM_OPTION_GPU_THRESHOLD: "-1"
       LLM_HOST: "llm-$i"
       LLM_PORT: "$port"
     volumes:
