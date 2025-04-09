@@ -47,6 +47,7 @@ EOF
     restart: unless-stopped
     environment:
       RPC_URL: ""
+      ETH_RPC_URL: ""
       PUBLIC_KEY: ""
       PRIVATE_KEY: ""
       LLM_HOST: "llm-$i"

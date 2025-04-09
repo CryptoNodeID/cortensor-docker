@@ -4,6 +4,13 @@ if [ -n "$RPC_URL" ]; then
   sed -i "s|^HOST=.*|HOST=${RPC_URL//&/\\&}|" .env
 fi
 
+if [ -n "$ETH_RPC_URL" ]; then
+  sed -i "s|^HOST_MAINNET=.*|HOST_MAINNET=${ETH_RPC_URL//&/\\&}|" .env
+else
+  ETH_RPC_URL=https://ethereum-rpc.publicnode.com
+  sed -i "s|^HOST_MAINNET=.*|HOST_MAINNET=${ETH_RPC_URL//&/\\&}|" .env
+fi
+
 if [ -n "$PUBLIC_KEY" ]; then
   sed -i "s/^NODE_PUBLIC_KEY=.*/NODE_PUBLIC_KEY=$PUBLIC_KEY/" .env
 fi
