@@ -58,7 +58,7 @@ EOF
       - "host.docker.internal:host-gateway"
 
   llm-$i:
-    image: cortensor/llm-engine-test-1
+    image: cortensor/llm-engine-default-0
     container_name: cts-llm-$i
     restart: always
     working_dir: /app
