@@ -50,6 +50,7 @@ EOF
       ETH_RPC_URL: ""
       PUBLIC_KEY: ""
       PRIVATE_KEY: ""
+      CONTRACT_ADDRESS_RUNTIME: ""
       LLM_HOST: "llm-$i"
       LLM_PORT: "$port"
     volumes:

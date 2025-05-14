@@ -3,4 +3,3 @@ ipfs-export
 config.json
 stake
 docker-compose*
-.env

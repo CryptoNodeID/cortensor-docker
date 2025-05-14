@@ -27,8 +27,8 @@ if [ -n "$LLM_PORT" ]; then
   sed -i "s/^LLM_PORT=.*/LLM_PORT=$LLM_PORT/" .env
 fi
 
-if [ -n "$RUNTIME_ADDRESS" ]; then
-  sed -i "s/^RUNTIME_ADDRESS=.*/RUNTIME_ADDRESS=$RUNTIME_ADDRESS/" .env
+if [ -n "$CONTRACT_ADDRESS_RUNTIME" ]; then
+  sed -i "s/^CONTRACT_ADDRESS_RUNTIME=.*/CONTRACT_ADDRESS_RUNTIME=$CONTRACT_ADDRESS_RUNTIME/" .env
 fi
 
 
