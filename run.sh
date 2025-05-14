@@ -27,11 +27,10 @@ if [ -n "$LLM_PORT" ]; then
   sed -i "s/^LLM_PORT=.*/LLM_PORT=$LLM_PORT/" .env
 fi
 
-# Devnet 4 Runtime Address
-CONTRACT_ADDRESS_RUNTIME=0x7bDF2244a3Cc65335176d7e546Cc99B9316a912a
-sed -i "s/^CONTRACT_ADDRESS_RUNTIME=.*/CONTRACT_ADDRESS_RUNTIME=$CONTRACT_ADDRESS_RUNTIME/" .env
+if [ -n "$RUNTIME_ADDRESS" ]; then
+  sed -i "s/^RUNTIME_ADDRESS=.*/RUNTIME_ADDRESS=$RUNTIME_ADDRESS/" .env
+fi
 
-echo "CONTRACT ADDRESS RUNTIME : $CONTRACT_ADDRESS_RUNTIME"
 
 /home/deploy/.cortensor/cortensord .env tool register
 /home/deploy/.cortensor/cortensord .env tool verify
