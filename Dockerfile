@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=ipfs /usr/local/bin/ipfs /usr/local/bin/ipfs
 
 # Clone the Cortensor installer repository
-RUN git clone https://github.com/cortensor/installer.git /opt/cortensor-installer
+RUN git clone https://github.com/cortensor/installer.git -b dev /opt/cortensor-installer
 
 WORKDIR /opt/cortensor-installer
 

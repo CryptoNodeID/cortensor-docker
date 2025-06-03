@@ -32,25 +32,39 @@ if [ "$KEEP_CONFIG" = false ]; then
 
     # Begin the docker-compose.yml file
     cat > docker-compose.yml <<EOF
-version: "3.8"
 services:
 EOF
-
+    # Backup and Remove existing .env file if it exists
+    if [ -f .env ]; then
+      cp .env .env.bak
+      rm .env
+    fi
+    cat > .env <<EOF
+# Environment variables for cortensor nodes
+# Please fill in the values for NODE_PUBLIC_KEY, NODE_PRIVATE_KEY, RPC_URL, ETH_RPC_URL, CONTRACT_ADDRESS_RUNTIME
+RPC_URL=""
+ETH_RPC_URL=""
+CONTRACT_ADDRESS_RUNTIME=""
+# Node public and private keys
+EOF
     # Loop to generate each pair
     for ((i=1; i<=count; i++)); do
       port=$((start_port + i - 1))
-      
+      cat >> .env <<EOF
+NODE_PUBLIC_KEY_$i=""
+NODE_PRIVATE_KEY_$i=""
+EOF
       cat >> docker-compose.yml <<EOF
   cortensor-$i:
     image: cortensor-image
     container_name: cortensor-$i
     restart: unless-stopped
     environment:
-      RPC_URL: ""
-      ETH_RPC_URL: ""
-      PUBLIC_KEY: ""
-      PRIVATE_KEY: ""
-      CONTRACT_ADDRESS_RUNTIME: ""
+      RPC_URL: "\${RPC_URL}"
+      ETH_RPC_URL: "\${ETH_RPC_URL}"
+      PUBLIC_KEY: "\${NODE_PUBLIC_KEY_$i}"
+      PRIVATE_KEY: "\${NODE_PRIVATE_KEY_$i}"
+      CONTRACT_ADDRESS_RUNTIME: "\${CONTRACT_ADDRESS_RUNTIME}"
       LLM_HOST: "llm-$i"
       LLM_PORT: "$port"
     volumes:
