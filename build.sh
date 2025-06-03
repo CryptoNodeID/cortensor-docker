@@ -32,7 +32,6 @@ if [ "$KEEP_CONFIG" = false ]; then
 
     # Begin the docker-compose.yml file
     cat > docker-compose.yml <<EOF
-version: "3.8"
 services:
 EOF
 

@@ -34,4 +34,4 @@ fi
 
 /home/deploy/.cortensor/cortensord .env tool register
 /home/deploy/.cortensor/cortensord .env tool verify
-/home/deploy/.cortensor/cortensord .env minerv2 1 docker
+/home/deploy/.cortensor/cortensord .env minerv4 1 docker
